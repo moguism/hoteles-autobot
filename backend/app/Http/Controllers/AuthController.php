@@ -6,6 +6,7 @@ use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\LoginRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
+use Ramsey\Uuid\Uuid;
 use Auth;
 
 class AuthController extends Controller
@@ -16,6 +17,7 @@ class AuthController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password'=> Hash::make($request->password),
+            'verification_code'=> Uuid::uuid4()
         ]);
 
         return response()->json([
@@ -34,6 +36,13 @@ class AuthController extends Controller
         }
 
         $user = User::where('email', $request->email)->first();
+
+        if($user == null || $user->is_verified == false)
+        {
+            return response()->json([
+                'status'=> false,
+            ], status: 401);
+        }
 
         return response()->json([
             'status'=> true,
