@@ -1,5 +1,5 @@
 {
-  "name": "VerificationEmail",
+  "name": "My workflow",
   "nodes": [
     {
       "parameters": {
@@ -12,7 +12,7 @@
         0,
         0
       ],
-      "id": "ad6db3cb-3fa6-4d51-96e2-5a36afe8d59e",
+      "id": "231e46ff-24f6-443b-bf7c-a1c4ff898f50",
       "name": "Webhook",
       "webhookId": "aedeff42-d555-4571-a363-826bac34038c"
     },
@@ -21,7 +21,7 @@
         "fromEmail": "fortnitenotifier.moguism@gmail.com",
         "toEmail": "={{$json[\"query\"][\"email\"]}}",
         "subject": "Prueba",
-        "html": "=<html><body>\n<p>Hola,</p>\n<p>Haz clic en el botón de abajo para verificar tu cuenta:</p>\n<a href='{{ $json.query.code }}' style='display:inline-block;padding:10px 20px;background-color:#4CAF50;color:white;text-decoration:none;border-radius:5px;'>Verificar Cuenta</a>\n<p>Si no fuiste tú, puedes ignorar este correo.</p>\n</body></html>",
+        "html": "=<html><body>\n<p>Hola,</p>\n<p>Haz clic en el botón de abajo para verificar tu cuenta:</p>\n<a href=\"{{ 'http://127.0.0.1:8000/api/verify?code=' + $json.query.code + \"&email=\" + $json.query.email}}\" style='display:inline-block;padding:10px 20px;background-color:#4CAF50;color:white;text-decoration:none;border-radius:5px;'>Verificar Cuenta</a>\n<p>Si no fuiste tú, puedes ignorar este correo.</p>\n</body></html>",
         "options": {}
       },
       "type": "n8n-nodes-base.emailSend",
@@ -30,12 +30,12 @@
         220,
         0
       ],
-      "id": "1fe99b0f-66f5-41dc-bac0-44ed1d5d362e",
+      "id": "ac9c96d8-248a-4de3-b85e-3196fb5a3879",
       "name": "Send Email",
       "webhookId": "c5dd2b38-ec8c-4e81-93b3-1cd0ad56708a",
       "credentials": {
         "smtp": {
-          "id": "JxwlQfLBO5nNfRNI",
+          "id": "GeI5WJzTlFOxsHTy",
           "name": "SMTP account"
         }
       }
@@ -59,11 +59,11 @@
   "settings": {
     "executionOrder": "v1"
   },
-  "versionId": "3b62bb22-7ace-4a98-8b15-0fd7f40c4218",
+  "versionId": "56e9d9a2-aec6-4e55-b9a8-6c4ba1481d3f",
   "meta": {
     "templateCredsSetupCompleted": true,
-    "instanceId": "f228acaa7ddab7f4bed4e6210a0f0cd099075235e65900d1c8da97521cbcca78"
+    "instanceId": "07ef0e051a446faad1e38e8c7cf05d218770b1e2e04c3a1410925c849da2a7ec"
   },
-  "id": "j5CZYmXQURAShiDA",
+  "id": "wv5zGjyDfBd5pElK",
   "tags": []
 }

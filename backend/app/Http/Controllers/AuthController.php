@@ -8,6 +8,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Ramsey\Uuid\Uuid;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Http\Request;
 use Auth;
 use Exception;
 
@@ -17,7 +18,7 @@ class AuthController extends Controller
     // TODO: Mejorar estructura siguiendo patrones SOLID
     public function register(CreateUserRequest $request)
     {
-        $verification_code = Uuid::uuid4()->toString();;
+        $verification_code = Uuid::uuid4()->toString();
         $email = $request->email;
 
         $user = User::create([
@@ -67,5 +68,24 @@ class AuthController extends Controller
             'status'=> true,
             'token' => $user->createToken("API TOKEN")->plainTextToken
         ], 200);
+    }
+
+    public function verifyAccount(Request $request)
+    {
+        $user = User::where([
+            'email' => $request->query('email'),
+            'verification_code'=> $request->query('code')
+            ])->first();
+
+        if (!$user) {
+            return response()->json([
+                'status' => false,
+            ], 401);
+        }
+
+        $user->is_verified = true;
+        $user->save();
+
+        return view('mail-verified');
     }
 }
