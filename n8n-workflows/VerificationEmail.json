@@ -1,0 +1,69 @@
+{
+  "name": "VerificationEmail",
+  "nodes": [
+    {
+      "parameters": {
+        "path": "aedeff42-d555-4571-a363-826bac34038c",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "ad6db3cb-3fa6-4d51-96e2-5a36afe8d59e",
+      "name": "Webhook",
+      "webhookId": "aedeff42-d555-4571-a363-826bac34038c"
+    },
+    {
+      "parameters": {
+        "fromEmail": "fortnitenotifier.moguism@gmail.com",
+        "toEmail": "={{$json[\"query\"][\"email\"]}}",
+        "subject": "Prueba",
+        "html": "=<html><body>\n<p>Hola,</p>\n<p>Haz clic en el botón de abajo para verificar tu cuenta:</p>\n<a href='{{ $json.query.code }}' style='display:inline-block;padding:10px 20px;background-color:#4CAF50;color:white;text-decoration:none;border-radius:5px;'>Verificar Cuenta</a>\n<p>Si no fuiste tú, puedes ignorar este correo.</p>\n</body></html>",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        220,
+        0
+      ],
+      "id": "1fe99b0f-66f5-41dc-bac0-44ed1d5d362e",
+      "name": "Send Email",
+      "webhookId": "c5dd2b38-ec8c-4e81-93b3-1cd0ad56708a",
+      "credentials": {
+        "smtp": {
+          "id": "JxwlQfLBO5nNfRNI",
+          "name": "SMTP account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Send Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "3b62bb22-7ace-4a98-8b15-0fd7f40c4218",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "f228acaa7ddab7f4bed4e6210a0f0cd099075235e65900d1c8da97521cbcca78"
+  },
+  "id": "j5CZYmXQURAShiDA",
+  "tags": []
+}

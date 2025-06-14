@@ -7,18 +7,37 @@ use App\Http\Requests\LoginRequest;
 use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Ramsey\Uuid\Uuid;
+use Illuminate\Support\Facades\Http;
 use Auth;
+use Exception;
 
 class AuthController extends Controller
 {
+    // La verificación de mail la podría hacer desde el propio Laravel, pero para practicar con n8n lo he hecho así
+    // TODO: Mejorar estructura siguiendo patrones SOLID
     public function register(CreateUserRequest $request)
     {
+        $verification_code = Uuid::uuid4()->toString();;
+        $email = $request->email;
+
         $user = User::create([
             'name' => $request->name,
-            'email' => $request->email,
+            'email' => $email,
             'password'=> Hash::make($request->password),
-            'verification_code'=> Uuid::uuid4()
+            'verification_code'=> $verification_code
         ]);
+
+        try
+        {
+            Http::withOptions(['verify' => false])->get(env("N8N_MAIL_WEBHOOK"), [
+                'code' => $verification_code,
+                'email'=> $email
+            ]);
+        }
+        catch(Exception)
+        {
+            print "Ha ocurrido un error al intentar mandar la petición a n8n";
+        }
 
         return response()->json([
             'status' => true,
