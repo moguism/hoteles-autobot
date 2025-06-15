@@ -1,0 +1,15 @@
+<div *ngIf="isSent; else receivedMessage" class="d-flex flex-row justify-content-end mb-4">
+  <div class="p-3 me-3 border bg-body-tertiary" style="border-radius: 15px;">
+    <p class="small mb-0">{{ message }}</p>
+  </div>
+  <img [src]="avatarUrl" alt="avatar" style="width: 45px; height: 100%;">
+</div>
+
+<ng-template #receivedMessage>
+  <div class="d-flex flex-row justify-content-start mb-4">
+    <img [src]="avatarUrl" alt="avatar" style="width: 45px; height: 100%;">
+    <div class="p-3 ms-3" style="border-radius: 15px; background-color: rgba(57, 192, 237,.2);">
+      <p class="small mb-0">{{ message }}</p>
+    </div>
+  </div>
+</ng-template>
