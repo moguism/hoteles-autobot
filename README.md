@@ -7,3 +7,4 @@
 - **Instalar n8n localmente:** https://www.youtube.com/watch?v=YHsN8jb8A8M
 - **Tutorial LarAgent:** https://www.youtube.com/watch?v=Y7F4MoC5M8Y
 - **Instalar Rasa:** https://www.youtube.com/watch?v=RVoFqxmG8p0
+- **MCP + n8n:** https://www.youtube.com/watch?v=uXRkwwDTWdg
