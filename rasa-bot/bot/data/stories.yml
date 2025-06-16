@@ -2,18 +2,22 @@ version: "3.1"
 
 stories:
 
-- story: hotel path
+- story: greet path
   steps:
   - intent: greet
   - action: utter_greet
+  - action: action_restart
+
+- story: hotel path
+  steps:
   - intent: asking_hotels
   - action: utter_hotels
   - action: utter_did_that_help
+  - action: action_restart
 
 - story: service path
   steps:
-  - intent: greet
-  - action: utter_greet
   - intent: asking_services
   - action: utter_services
   - action: utter_did_that_help
+  - action: action_restart

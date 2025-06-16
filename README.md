@@ -2,6 +2,12 @@
 - Aplicar principios SOLID
 - Mejorar la seguridad de las CORS
 
+## INSTRUCCIONES
+- Poner a correr Rasa con:
+ ```bash
+    rasa run --enable-api --cors "*"
+```
+
 ## RECURSOS
 - **Relaciones:** https://www.youtube.com/watch?v=7B_Sbqq62Bc&t=650s
 - **Autenticación:** https://www.youtube.com/watch?v=57jtVRxWEMw

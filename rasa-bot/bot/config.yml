@@ -17,7 +17,8 @@ pipeline:
   - name: "CountVectorsFeaturizer"
   - name: "DIETClassifier"
   - name: "FallbackClassifier"
-    threshold: 0.4
+    threshold: 0.8 # Es posible que tenga que cambiar este valor (por ahora significa que todo lo que esté por debajo de 80% de confianza, se rechazará)
+    ambiguity_threshold: 0.1
 
 policies:
   - name: "RulePolicy"

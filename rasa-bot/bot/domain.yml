@@ -6,11 +6,11 @@ intents:
   - asking_hotels
   - asking_services
   - bot_challenge
-  - nlu_fallback
+  - out_of_scope
 
 responses:
   utter_greet:
-  - text: "Hey! How are you?"
+  - text: "Hola, ¿cómo estás?"
 
   # TODO: Agregar manualmente todos los hoteles que consigua la API automatizada
   utter_hotels:
@@ -23,13 +23,13 @@ responses:
   - text: "Si quieres puedes preguntar por los servicios de un hotel concreto, y te diré fechas y precios."
 
   utter_goodbye:
-  - text: "Bye"
+  - text: "Adiós"
 
   utter_iamabot:
-  - text: "I am a bot, powered by Rasa."
+  - text: "Soy un bot. No me kickees de la partida porfa :("
 
-  utter_nlu_fallback:
-    - text: "Lo siento, no puedo hablar de eso."
+  utter_out_of_scope:
+    - text: "false"
 
 session_config:
   session_expiration_time: 60
