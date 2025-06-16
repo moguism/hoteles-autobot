@@ -7,9 +7,15 @@ use Illuminate\Http\Request;
 
 class ChatController extends Controller
 {
-    public function sendMessageToAI(Request $request)
+    public function sendMessageToRasa(Request $request)
     {
-        $message = $request->message;
+        // Por ahora Rasa a todo lo que no sabe responde con un mensaje vacío
+        // Si es el caso, lo suyo sería que se ejecute el sendMessageToAi
+        // También puede hacer la petición al MCP Server
+    }
+
+    private function sendMessageToAI(string $message)
+    {
         //error_log('Mensaje recibido: ' . $message);
 
         $response = RecepcionistAgent::for('content')->respond($message);

@@ -36,7 +36,7 @@
             <mxPoint as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="QlAascM8VkgeOsBPRstS-9" value="La parte con Rasa que tiene datos de los hoteles a los que tiene acceso la API&lt;div&gt;(hardcoded)&lt;/div&gt;" style="whiteSpace=wrap;html=1;strokeWidth=2;" parent="1" vertex="1">
+        <mxCell id="QlAascM8VkgeOsBPRstS-9" value="La parte con Rasa (Python) que tiene datos de los hoteles a los que tiene acceso la API, de forma hardcodeada" style="whiteSpace=wrap;html=1;strokeWidth=2;" parent="1" vertex="1">
           <mxGeometry x="150" y="-720" width="140" height="90" as="geometry" />
         </mxCell>
         <mxCell id="QlAascM8VkgeOsBPRstS-16" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="QlAascM8VkgeOsBPRstS-11" target="QlAascM8VkgeOsBPRstS-15" edge="1">
@@ -48,7 +48,7 @@
         <mxCell id="QlAascM8VkgeOsBPRstS-18" value="" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" parent="1" source="QlAascM8VkgeOsBPRstS-15" target="QlAascM8VkgeOsBPRstS-17" edge="1">
           <mxGeometry relative="1" as="geometry" />
         </mxCell>
-        <mxCell id="QlAascM8VkgeOsBPRstS-15" value="Si el usuario le pregunta cuál es el precio más bajo, por ejemplo, se usa un MCP hecho en Python que hace una petición al servidor para obtener toda la info" style="whiteSpace=wrap;html=1;strokeWidth=2;" parent="1" vertex="1">
+        <mxCell id="QlAascM8VkgeOsBPRstS-15" value="Si el usuario le pregunta cuál es el precio más bajo, por ejemplo, se usa un MCP que hace una petición al servidor para obtener toda la info" style="whiteSpace=wrap;html=1;strokeWidth=2;" parent="1" vertex="1">
           <mxGeometry x="630" y="-570" width="160" height="90" as="geometry" />
         </mxCell>
         <mxCell id="QlAascM8VkgeOsBPRstS-17" value="&lt;b&gt;Todo el flujo powered by Laravel&lt;/b&gt;" style="whiteSpace=wrap;html=1;strokeWidth=2;" parent="1" vertex="1">

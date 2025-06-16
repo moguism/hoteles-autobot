@@ -16,6 +16,9 @@ nlu:
     - goodmorning
     - goodevening
     - good afternoon
+    - hola
+    - que tal
+    - buenos dias
 
 - intent: goodbye
   examples: |
@@ -29,59 +32,26 @@ nlu:
     - see you around
     - bye bye
     - see you later
+    - adios
+    - hasta luego
 
-- intent: affirm
+- intent: asking_hotels
   examples: |
-    - yes
-    - y
-    - indeed
-    - of course
-    - that sounds good
-    - correct
+    - ¿Qué hoteles hay disponibles?
+    - ¿Puedes decirme qué hoteles hay?
+    - Dime los hoteles
+    - Enumera los hoteles
+    - ¿Cuántos hoteles hay?
 
-- intent: deny
+- intent: asking_services
   examples: |
-    - no
-    - n
-    - never
-    - I don't think so
-    - don't like that
-    - no way
-    - not really
-
-- intent: mood_great
-  examples: |
-    - perfect
-    - great
-    - amazing
-    - feeling like a king
-    - wonderful
-    - I am feeling very good
-    - I am great
-    - I am amazing
-    - I am going to save the world
-    - super stoked
-    - extremely good
-    - so so perfect
-    - so good
-    - so perfect
-
-- intent: mood_unhappy
-  examples: |
-    - my day was horrible
-    - I am sad
-    - I don't feel very well
-    - I am disappointed
-    - super sad
-    - I'm so sad
-    - sad
-    - very sad
-    - unhappy
-    - not good
-    - not very good
-    - extremly sad
-    - so saad
-    - so sad
+    - ¿Qué servicios tienen los hoteles?
+    - ¿Puedes decirme qué servicios hay?
+    - Dime los servicios
+    - Enumera los servicios
+    - ¿Qué servicios hay?
+    - ¿Qué servicios existen?
+    - ¿Cuántos servicios hay?
 
 - intent: bot_challenge
   examples: |

@@ -1,3 +1,7 @@
+## TODO List:
+- Aplicar principios SOLID
+- Mejorar la seguridad de las CORS
+
 ## RECURSOS
 - **Relaciones:** https://www.youtube.com/watch?v=7B_Sbqq62Bc&t=650s
 - **Autenticación:** https://www.youtube.com/watch?v=57jtVRxWEMw
@@ -9,3 +13,4 @@
 - **Instalar Rasa:** https://www.youtube.com/watch?v=RVoFqxmG8p0
 - **MCP + n8n:** https://www.youtube.com/watch?v=uXRkwwDTWdg
 - **Configurar servidor MCP a través de API:** https://www.youtube.com/watch?v=2hwrxAbw-9Y
+- **Fallbacks en Rasa:** https://legacy-docs-oss.rasa.com/docs/rasa/fallback-handoff/

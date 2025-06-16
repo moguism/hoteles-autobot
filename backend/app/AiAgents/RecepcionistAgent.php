@@ -2,7 +2,9 @@
 
 namespace App\AiAgents;
 
+use App\Models\HotelService;
 use LarAgent\Agent;
+use LarAgent\Attributes\Tool;
 
 class RecepcionistAgent extends Agent
 {
@@ -24,5 +26,14 @@ class RecepcionistAgent extends Agent
     public function prompt($message)
     {
         return $message;
+    }
+
+    // ESTO ES UN MCP: Una herramienta que le da contexto al modelo de Inteligencia Artificial
+    #[Tool('Obtiene todos los hoteles y sus servicios')]
+    public function obtainHotelsAndServices()
+    {
+        // Con esta línea obtengo todos con sus relaciones ("all()" no vale, tiene que ser "get()")
+        $hotelServices = HotelService::with(['hotel', 'service'])->get();
+        return $hotelServices;
     }
 }

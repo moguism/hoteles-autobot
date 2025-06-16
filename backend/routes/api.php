@@ -2,7 +2,6 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ChatController;
-use App\Http\Controllers\HotelServiceController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +13,4 @@ Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
 Route::get('/verify', [AuthController::class, 'verifyAccount']);
 
-Route::post('/chat', [ChatController::class,'sendMessageToAI']);
-
-Route::get('/hotels-services/all', [HotelServiceController::class, 'index']);
+Route::post('/chat', [ChatController::class,'sendMessageToRasa']);
