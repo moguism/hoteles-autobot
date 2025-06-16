@@ -31,7 +31,7 @@ class ChatController extends Controller
             }
 
             $response = [
-                "text" => $text,
+                "message" => $text,
             ];
 
             return response()->json($response);
