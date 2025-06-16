@@ -8,3 +8,6 @@
 - **Tutorial LarAgent:** https://www.youtube.com/watch?v=Y7F4MoC5M8Y
 - **Instalar Rasa:** https://www.youtube.com/watch?v=RVoFqxmG8p0
 - **MCP + n8n:** https://www.youtube.com/watch?v=uXRkwwDTWdg
+
+## INSTRUCCIONES
+- Para cambiar el puerto del servidor MCP, buscar "port" en todos los archivos, y en el "server.py" nativo de la biblioteca FastMCP, cambiar el valor de la variable.

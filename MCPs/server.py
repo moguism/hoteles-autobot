@@ -1,20 +1,18 @@
 from mcp.server.fastmcp import FastMCP
+import requests
+import constants
 
-# Create an MCP server
+# Crea el servidor MCP
 mcp = FastMCP("MCP")
 
-# Add an addition tool
+# Obtiene todos junto con sus relaciones del servidor de Laravel
 @mcp.tool()
-def add(a: int, b: int) -> int:
-    """Add two numbers"""
-    return a + b
+def obtain_all_hotels_services() -> int:
+    response = requests.get(str(constants.API_URL, "hotels-services/all"))
+    json = response.json()
+    print(json)
+    return json
 
-# Add a dynamic greeting resource
-@mcp.resource("greeting://{name}")
-def get_greeting(name: str) -> str:
-    """Get a personalized greeting"""
-    return f"Hello, {name}!"
-
-# Inicia el servidor (no viene en el ejemplo oficial por alguna razón)
+# Inicia el servidor (no viene en el ejemplo oficial por alguna razón). Usa el puerto 5000
 if __name__ == "__main__":
-    mcp.run()
+    mcp.run("sse")
