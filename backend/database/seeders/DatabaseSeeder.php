@@ -17,6 +17,7 @@ class DatabaseSeeder extends Seeder
             HotelSeeder::class,
             ServiceSeeder::class,
             HotelServiceSeeder::class,
+            DatePriceSeeder::class,
         ]);
     }
 }

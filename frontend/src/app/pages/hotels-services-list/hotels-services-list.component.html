@@ -1,0 +1,33 @@
+<div class="header">
+    <a (click)="menuShowing = 'hotels'">Hoteles</a>
+    | 
+    <a (click)="menuShowing = 'services'">Servicios</a>
+</div>
+@if(menuShowing == "hotels")
+{
+    @for (hotel of hotels; track hotel.id)
+    {
+        <div class="hotel-card">
+            <p>Nombre: {{hotel.name}}</p>
+            <p>Dirección: {{ hotel.address }}</p>
+            <p><strong>Servicios:</strong></p>
+            <ul>
+                @for(hotelService of hotel.services; track $index)
+                {
+                    <li>{{ hotelService.service.name }}</li>
+                }
+            </ul>
+            <button (click)="router.navigateToUrl('hotel/' + hotel.id)">Acceder</button>
+        </div>
+    }
+}
+@else 
+{
+    @for (service of services; track service.id)
+    {
+        <div class="service-card">
+            <p>Nombre: {{service.name}}</p>
+            <button (click)="router.navigateToUrl('service/' + service.id)">Acceder</button>
+        </div>
+    }
+}

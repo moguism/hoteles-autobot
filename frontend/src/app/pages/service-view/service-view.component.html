@@ -1,0 +1,22 @@
+@if(service)
+{
+    <h1>{{ service.name }}</h1>
+    <button>Agregar a wishlist</button>
+    <!-- TODO: Agregar buscador de hoteles -->
+    @for (hotelService of service.hotels; track hotelService.id)
+    {
+        <div>
+            <p>Hotel: {{ hotelService.hotel.name }}</p>
+            <ul>
+                @for(datePrice of hotelService.date_prices; track $index)
+                {
+                    <li>Precio: {{ datePrice.price }}</li>
+                    <li>Fecha: {{ datePrice.date }}</li>
+                }
+            </ul>
+        </div>
+    }
+}
+@else {
+    <p>Cargando...</p>
+}

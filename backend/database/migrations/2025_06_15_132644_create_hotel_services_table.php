@@ -15,8 +15,6 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('hotel_id');
             $table->unsignedBigInteger('service_id');
-            $table->double('price');
-            $table->date('date');
             $table->timestamps();
         });
     }

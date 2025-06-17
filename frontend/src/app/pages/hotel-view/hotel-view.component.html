@@ -1,0 +1,47 @@
+@if(hotel)
+{
+    <h1>{{hotel.name}}</h1>
+    <h2>Servicios disponible:</h2>
+    <div class="header">
+        @for (hotelService of hotel.services; track $index) 
+        {
+            <a (click)="changeSelectedService(hotelService)">{{hotelService.service.name}}</a>
+            @if($index == 0)
+            {
+                |
+            }
+        }
+    </div>
+    @if(authService.isAuthenticated())
+    {
+        <button>Agregar a wishlist</button>
+    }
+    <!-- TODO: Agregar criterios de ordenación por precio y fecha -->
+    <h2>Listado de precios</h2>
+    @if(selectedService != null)
+    {
+        @for (datePrice of selectedService.date_prices; track $index)
+        {
+            <div>
+                <p>Precio: {{ datePrice.price }}</p>
+                <p>Fecha: {{ datePrice.date }}</p>
+            </div>
+        }
+    }
+    @else {
+        @for (hotelService of hotel.services; track $index){
+            <h3>Servicio: {{ hotelService.service.name }}</h3>
+            @for (datePrice of hotelService.date_prices; track $index)
+            {
+                <div>
+                    <p>Precio: {{ datePrice.price }}</p>
+                    <p>Fecha: {{datePrice.date }}</p>
+                </div>
+            }
+        }
+    }
+}
+@else 
+{
+    <p>Cargando...</p>
+}
