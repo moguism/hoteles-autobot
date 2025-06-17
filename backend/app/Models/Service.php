@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Service extends Model
 {
@@ -13,8 +13,8 @@ class Service extends Model
     protected $guarded = [];
 
     // Relaciones
-    public function hotels(): BelongsToMany
+    public function hotels(): HasMany
     {
-        return $this->belongsToMany(Hotel::class)->withPivot(["price", "date"]);
+        return $this->hasMany(HotelService::class);
     }
 }

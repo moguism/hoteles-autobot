@@ -20,6 +20,7 @@ export class ApiService {
     if (token) {
       this.jwt = token
     }
+    console.log("TOKEN: ", token)
   }
 
   async get<T = void>(path: string, params: any = {}, responseType: any = null): Promise<Result<T>> {
