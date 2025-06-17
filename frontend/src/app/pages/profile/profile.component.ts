@@ -3,6 +3,7 @@ import { AuthService } from '../../services/auth.service';
 import { User } from '../../models/user';
 import { CustomRouterService } from '../../services/custom-router.service';
 import { UserService } from '../../services/user.service';
+import { WishlistService } from '../../services/wishlist.service';
 
 @Component({
   selector: 'app-profile',
@@ -14,8 +15,9 @@ export class ProfileComponent implements OnInit {
 
   constructor(
     private authService: AuthService, 
-    private router: CustomRouterService,
-    private userService: UserService
+    public router: CustomRouterService,
+    private userService: UserService,
+    private wishlistService: WishlistService
   ){}
 
   user: User | null = null
@@ -28,6 +30,11 @@ export class ProfileComponent implements OnInit {
       return
     }
 
+    await this.getUser();
+  }
+
+  async getUser()
+  {
     this.user = await this.userService.getCurrentUser()
     if(this.user == null)
     {
@@ -37,6 +44,12 @@ export class ProfileComponent implements OnInit {
     }
 
     this.authService.saveUser(this.user)
+  }
+
+  async deleteWishlist(wishlistId: number)
+  {
+    await this.wishlistService.deleteWishlist(wishlistId)
+    await this.getUser()
   }
 
 }

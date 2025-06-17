@@ -3,7 +3,7 @@ import { User } from "./user";
 
 export interface Wishlist {
     id: number,
-    desiredPrice: number,
+    desired_price: number,
     user: User,
-    hotelService: HotelService
+    hotel_service: HotelService
 }

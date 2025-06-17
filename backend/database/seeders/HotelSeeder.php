@@ -12,14 +12,21 @@ class HotelSeeder extends Seeder
      */
     public function run(): void
     {
+        // Este primer hotel está para poder hacer una wishlist para un servicio de cualquier hotel
         Hotel::create([
             "id"=> 1,
+            "name"=> "ANY",
+            "address"=> "ANY"
+        ]);
+
+        Hotel::create([
+            "id"=> 2,
             "name"=> "Hotel Polynesia",
             "address"=> "Benalmádena"
         ]);
 
         Hotel::create([
-            "id"=> 2,
+            "id"=> 3,
             "name"=> "Hotel Benalma",
             "address"=> "Benalmádena"
         ]);

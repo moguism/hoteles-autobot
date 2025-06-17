@@ -1,7 +1,25 @@
-@if(user)
-{
-    <p>Nombre: {{ user.name }}</p>
-}
-@else {
-    <p>Cargando...</p>
-}
+<div class="container">
+    @if(user)
+    {
+        <div class="user-info">
+            <button (click)="router.navigateToUrl('')">Ir al home</button>
+            <p>Nombre: {{ user.name }}</p>
+            
+        </div>
+        @for (wishlist of user.wishlists; track $index)
+        {
+            <div class="wishlist">
+                <p>Precio deseado: {{wishlist.desired_price}} </p>
+                @if(wishlist.hotel_service.hotel)
+                {
+                    <p>Hotel: {{ wishlist.hotel_service.hotel.name }}</p>
+                }
+                <p>Servicio: {{ wishlist.hotel_service.service.name }}</p>
+                <button (click)="deleteWishlist(wishlist.id)">Borrar</button>
+            </div>
+        }
+    }
+    @else {
+        <p>Cargando...</p>
+    }
+</div>

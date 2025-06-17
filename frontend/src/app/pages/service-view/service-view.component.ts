@@ -4,10 +4,11 @@ import { ActivatedRoute } from '@angular/router';
 import { AuthService } from '../../services/auth.service';
 import { HotelsServicesService } from '../../services/hotels-services.service';
 import { Service } from '../../models/service';
+import { WishlistCreatorComponent } from '../../components/wishlist-creator/wishlist-creator.component';
 
 @Component({
   selector: 'app-service-view',
-  imports: [],
+  imports: [WishlistCreatorComponent],
   templateUrl: './service-view.component.html',
   styleUrl: './service-view.component.css'
 })
@@ -22,6 +23,7 @@ export class ServiceViewComponent implements OnInit {
   id: number = 0;
   routeParamMap$: Subscription | null = null;
   service: Service | null = null;
+  openWishlistCreator: boolean = false
 
   async ngOnInit(): Promise<void> 
   {

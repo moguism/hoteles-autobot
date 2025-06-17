@@ -1,20 +1,34 @@
 @if(service)
 {
     <h1>{{ service.name }}</h1>
-    <button>Agregar a wishlist</button>
     <!-- TODO: Agregar buscador de hoteles -->
     @for (hotelService of service.hotels; track hotelService.id)
     {
-        <div>
-            <p>Hotel: {{ hotelService.hotel.name }}</p>
-            <ul>
-                @for(datePrice of hotelService.date_prices; track $index)
+        @if(hotelService.hotel != null)
+        {
+            <div>
+                <p>Hotel: {{ hotelService.hotel.name }}</p>
+                <ul>
+                    @for(datePrice of hotelService.date_prices; track $index)
+                    {
+                        <li>Precio: {{ datePrice.price }}</li>
+                        <li>Fecha: {{ datePrice.date }}</li>
+                    }
+                </ul>
+            </div>
+        }
+        @else
+        {
+            <!-- Si no tiene hotel significa que es el universal -->
+            @if(authService.isAuthenticated())
+            {
+                <button (click)="openWishlistCreator = !openWishlistCreator">Agregar a wishlist</button>
+                @if(openWishlistCreator)
                 {
-                    <li>Precio: {{ datePrice.price }}</li>
-                    <li>Fecha: {{ datePrice.date }}</li>
+                    <app-wishlist-creator [hotelService]="hotelService"></app-wishlist-creator>
                 }
-            </ul>
-        </div>
+            }
+        }
     }
 }
 @else {

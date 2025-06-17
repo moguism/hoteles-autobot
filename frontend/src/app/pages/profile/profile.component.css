@@ -1,0 +1,65 @@
+button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+p {
+  font-size: 14px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.container {
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.user-info {
+  margin-bottom: 20px;
+}
+
+.user-info p {
+  font-weight: 500;
+}
+
+.wishlist {
+  margin-top: 20px;
+  padding: 15px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.wishlist p {
+  margin: 5px 0;
+}
+
+.wishlist button {
+  background-color: #dc3545;
+  padding: 8px 16px;
+  font-size: 14px;
+  border-radius: 5px;
+}
+
+.wishlist button:hover {
+  background-color: #c82333;
+}
+
+.loading {
+  font-size: 16px;
+  font-weight: bold;
+  color: #6c757d;
+  text-align: center;
+}
