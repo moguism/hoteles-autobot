@@ -20,3 +20,5 @@
 - **MCP + n8n:** https://www.youtube.com/watch?v=uXRkwwDTWdg
 - **Configurar servidor MCP a través de API:** https://www.youtube.com/watch?v=2hwrxAbw-9Y
 - **Fallbacks en Rasa:** https://legacy-docs-oss.rasa.com/docs/rasa/fallback-handoff/
+- **API de hoteles (limitado a un listado de 10 pero por ahora vale):** https://xotelo.com/
+- **Listado de hoteles (es necesario tener cuenta de RapidAPI, y luego simplemente copiar los headers que vienen en este enlace):** https://rapidapi.com/anastue-pGK7lGUO-Wo/api/xotelo-hotel-prices/playground/apiendpoint_2bd42903-8d5d-42fd-bfb2-c772387237f1**
