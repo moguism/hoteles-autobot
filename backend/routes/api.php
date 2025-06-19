@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ChatController;
 use App\Http\Controllers\HotelController;
+use App\Http\Controllers\HotelServiceController;
 use App\Http\Controllers\ServiceController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\WishlistController;
@@ -24,3 +25,5 @@ Route::get('/services/{id}', [ServiceController::class, 'getServiceById']);
 
 Route::post('/wishlist/create', [WishlistController::class,'createWishlist'])->middleware('auth:sanctum');
 Route::delete('/wishlist/{id}', [WishlistController::class,'deleteWishlistById'])->middleware('auth:sanctum');
+
+Route::get('/hotels-services/all', [HotelServiceController::class,'index']);

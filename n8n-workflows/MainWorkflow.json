@@ -1,0 +1,268 @@
+{
+  "name": "MainWorkflow",
+  "nodes": [
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        0
+      ],
+      "id": "3107e573-e2da-46ff-bae5-b1b43cd42d79",
+      "name": "When clicking ‘Execute workflow’"
+    },
+    {
+      "parameters": {
+        "content": "Este nodo sería reemplazado después por el que se ejecuta cada día"
+      },
+      "type": "n8n-nodes-base.stickyNote",
+      "position": [
+        -260,
+        -20
+      ],
+      "typeVersion": 1,
+      "id": "db306b3b-3d7a-4bdf-a766-fa2af178a507",
+      "name": "Sticky Note"
+    },
+    {
+      "parameters": {
+        "url": "=https://data.xotelo.com/api/rates?hotel_key={{$json.xotelo_hotel_key}}&chk_in={{new Date().toISOString().slice(0, 10)}}&chk_out={{new Date(Date.now() + 86400000).toISOString().slice(0, 10)}}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        440,
+        0
+      ],
+      "id": "d7fe6e9f-b6d0-47b9-ab2f-bee916c730ab",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT * FROM hotels WHERE id != 1;",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        220,
+        0
+      ],
+      "id": "064a0f02-203f-4953-92ab-ba79119b4f63",
+      "name": "Get Hotels",
+      "credentials": {
+        "mySql": {
+          "id": "DbRuZKLQCXuhIElS",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT email FROM users WHERE id = {{ $('Get Wishlists').item.json.user_id }};",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        1300,
+        0
+      ],
+      "id": "49e45592-b19b-401e-a110-64ebfb8b1968",
+      "name": "Get Users",
+      "credentials": {
+        "mySql": {
+          "id": "DbRuZKLQCXuhIElS",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "fromEmail": "fortnitenotifier.moguism@gmail.com",
+        "toEmail": "={{ $('Get Users').item.json.email }}",
+        "subject": "Hay hoteles con descuento :D",
+        "html": "=<p>Buenos días, el siguiente hotel tiene un descuento, tal y como solicitaste:</p>\n<ul>\n<li><strong>{{ $('Get Hotels').item.json.name }}</strong>: {{ $('HTTP Request').item.json.result.rates[0].rate }}€</li>\n</ul>",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        1540,
+        0
+      ],
+      "id": "bf064405-b50e-47fb-a4c6-142a1e84b23e",
+      "name": "Send Email",
+      "webhookId": "ffd90139-f402-44b3-ba06-307801741801",
+      "credentials": {
+        "smtp": {
+          "id": "GeI5WJzTlFOxsHTy",
+          "name": "SMTP account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT id FROM hotel_services WHERE service_id = 1 AND hotel_id = {{ $('Get Hotels').item.json.id }};",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        880,
+        0
+      ],
+      "id": "05976cdb-7085-4195-b726-dbb8bf0ea3bb",
+      "name": "Get Hotel Services",
+      "credentials": {
+        "mySql": {
+          "id": "DbRuZKLQCXuhIElS",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "INSERT INTO date_prices(date, price, hotel_service_id) VALUES ('{{ $('HTTP Request').item.json.result.chk_in }}', {{ $('HTTP Request').item.json.result.rates[0].rate }}, {{ $('Get Hotel Services').item.json.id }});",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        1080,
+        0
+      ],
+      "id": "f902f01a-d576-4175-a204-833402bec603",
+      "name": "Insert Date Prices",
+      "credentials": {
+        "mySql": {
+          "id": "DbRuZKLQCXuhIElS",
+          "name": "MySQL account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "executeQuery",
+        "query": "SELECT * FROM wishlists WHERE desired_price > '{{ $('HTTP Request').item.json.result.rates[0].rate }}' AND hotel_service_id IN (SELECT id FROM hotel_services WHERE hotel_id IN (SELECT id FROM hotels WHERE xotelo_hotel_key = '{{ $('Get Hotels').item.json.xotelo_hotel_key }}'));",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.mySql",
+      "typeVersion": 2.4,
+      "position": [
+        660,
+        0
+      ],
+      "id": "69921288-7df0-43e1-9725-923e47b10b8f",
+      "name": "Get Wishlists",
+      "credentials": {
+        "mySql": {
+          "id": "DbRuZKLQCXuhIElS",
+          "name": "MySQL account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "When clicking ‘Execute workflow’": {
+      "main": [
+        [
+          {
+            "node": "Get Hotels",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "Get Wishlists",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Hotels": {
+      "main": [
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Users": {
+      "main": [
+        [
+          {
+            "node": "Send Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send Email": {
+      "main": [
+        []
+      ]
+    },
+    "Get Hotel Services": {
+      "main": [
+        [
+          {
+            "node": "Insert Date Prices",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Insert Date Prices": {
+      "main": [
+        [
+          {
+            "node": "Get Users",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Wishlists": {
+      "main": [
+        [
+          {
+            "node": "Get Hotel Services",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "2ecbbe42-c538-4ec3-9cab-5ac488d5d0f3",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "07ef0e051a446faad1e38e8c7cf05d218770b1e2e04c3a1410925c849da2a7ec"
+  },
+  "id": "tTD1yIkmNVpuoHAU",
+  "tags": []
+}

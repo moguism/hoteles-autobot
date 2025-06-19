@@ -14,10 +14,10 @@ responses:
 
   # TODO: Agregar manualmente todos los hoteles que consigua la API automatizada
   utter_hotels:
-  - text: "Tenemos los siguientes hoteles en nuestra base de datos: Hotel Polynesia (Benalmádena) y Hotel Benalma (Benalmádena)"
+  - text: "Tenemos los siguientes hoteles en nuestra base de datos: Ibeostar Waves Malaga Playa, Barcelo Málaga, Hotel Costa Málaga, H10 Croma Málaga, Only You Hotel Málaga, AC Hotel Malaga Palacio, Ilunion Málaga, NH Málaga, Sallés Hotel Málaga Centro y Petit Palace Plaza Málaga"
 
   utter_services:
-  - text: "En general, hay disponibles los siguientes servicios en todos los hoteles: alojamiento, day pass, restaurante y spá."
+  - text: "Actualmente solo incluimos ofertas de alojamiento"
 
   utter_did_that_help:
   - text: "Si quieres puedes preguntar por los servicios de un hotel concreto, y te diré fechas y precios."

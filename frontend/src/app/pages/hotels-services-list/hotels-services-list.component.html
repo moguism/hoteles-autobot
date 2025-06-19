@@ -1,7 +1,5 @@
 <div class="header">
     <a (click)="menuShowing = 'hotels'">Hoteles</a>
-    | 
-    <a (click)="menuShowing = 'services'">Servicios</a>
 </div>
 @if(menuShowing == "hotels")
 {
@@ -18,16 +16,6 @@
                 }
             </ul>
             <button (click)="router.navigateToUrl('hotel/' + hotel.id)">Acceder</button>
-        </div>
-    }
-}
-@else 
-{
-    @for (service of services; track service.id)
-    {
-        <div class="service-card">
-            <p>Nombre: {{service.name}}</p>
-            <button (click)="router.navigateToUrl('service/' + service.id)">Acceder</button>
         </div>
     }
 }

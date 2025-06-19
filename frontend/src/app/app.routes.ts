@@ -6,7 +6,6 @@ import { ProfileComponent } from './pages/profile/profile.component';
 import { HomeComponent } from './pages/home/home.component';
 import { HotelsServicesListComponent } from './pages/hotels-services-list/hotels-services-list.component';
 import { HotelViewComponent } from './pages/hotel-view/hotel-view.component';
-import { ServiceViewComponent } from './pages/service-view/service-view.component';
 
 export const routes: Routes = [
     {path: "", component: HomeComponent},
@@ -16,5 +15,4 @@ export const routes: Routes = [
     { path: 'profile', component: ProfileComponent },
     { path: 'hotels-services', component: HotelsServicesListComponent },
     { path: 'hotel/:id', component: HotelViewComponent},
-    { path: 'service/:id', component: ServiceViewComponent}
 ];

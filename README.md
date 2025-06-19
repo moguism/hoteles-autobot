@@ -8,6 +8,9 @@
     rasa run --enable-api --cors "*"
 ```
 
+## FUTURAS IMPLEMENTACIONES
+- Hacer que sea compatible con múltiples servicios (como Day Pass de piscina), y no solo alojamiento
+
 ## RECURSOS
 - **Relaciones:** https://www.youtube.com/watch?v=7B_Sbqq62Bc&t=650s
 - **Autenticación:** https://www.youtube.com/watch?v=57jtVRxWEMw

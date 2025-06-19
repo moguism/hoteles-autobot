@@ -33,7 +33,7 @@ class RecepcionistAgent extends Agent
     public function obtainHotelsAndServices()
     {
         // Con esta línea obtengo todos con sus relaciones ("all()" no vale, tiene que ser "get()")
-        $hotelServices = HotelService::with(['hotel', 'service'])->get();
+        $hotelServices = HotelService::with(['hotel', 'service', 'datePrices'])->get();
         return $hotelServices;
     }
 }
