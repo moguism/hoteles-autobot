@@ -15,7 +15,9 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('address');
-            $table->string('photo_url')->nullable();
+            $table->string('xotelo_hotel_key');
+            $table->string('xotelo_photo_url')->nullable();
+            $table->string('xotelo_hotel_url')->nullable();
             $table->timestamps();
         });
     }
