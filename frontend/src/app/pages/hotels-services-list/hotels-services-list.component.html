@@ -1,21 +1,35 @@
-<div class="header">
-    <a (click)="menuShowing = 'hotels'">Hoteles</a>
-</div>
 @if(menuShowing == "hotels")
-{
-    @for (hotel of hotels; track hotel.id)
-    {
-        <div class="hotel-card">
-            <p>Nombre: {{hotel.name}}</p>
-            <p>Dirección: {{ hotel.address }}</p>
-            <p><strong>Servicios:</strong></p>
-            <ul>
-                @for(hotelService of hotel.services; track $index)
+{  
+    <section style="background-color: #eee;">
+        <div class="container py-5">
+            <!-- Campo de búsqueda -->
+            <div class="row justify-content-center mb-4">
+                <div class="col-6 col-md-4">
+                    <input type="text" class="form-control" placeholder="Buscar hotel..." [(ngModel)]="searchQuery" (ngModelChange)="onSearchChange()" [ngModelOptions]="{'standalone': true}">
+                </div>
+            </div>
+            
+            <!-- Desplegable para ordenar por precio -->
+            <div class="row justify-content-center mb-4">
+                <div class="col-6 col-md-4">
+                    <select class="form-select" [(ngModel)]="sortValue" (ngModelChange)="onOrderChange()" [ngModelOptions]="{'standalone': true}">
+                        <option value="asc">Ordenar por Precio Ascendente</option>
+                        <option value="desc">Ordenar por Precio Descendente</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Mostrar los hoteles filtrados y ordenados -->
+            @if (searchedHotels.length > 0)
+            {
+                @for (hotel of searchedHotels; track hotel.id)
                 {
-                    <li>{{ hotelService.service.name }}</li>
+                    <app-hotel-card [hotel]="hotel"></app-hotel-card>
                 }
-            </ul>
-            <button (click)="router.navigateToUrl('hotel/' + hotel.id)">Acceder</button>
+            }
+            @else {
+                <p>No hay resultados para la búsqueda</p>
+            }
         </div>
-    }
+    </section>
 }

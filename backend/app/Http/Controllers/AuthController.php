@@ -86,6 +86,7 @@ class AuthController extends Controller
         $user->is_verified = true;
         $user->save();
 
-        return view('mail-verified');
+        $external_uri = 'http://localhost:4200?verified=true'; 
+        return redirect()->to($external_uri)->send();
     }
 }

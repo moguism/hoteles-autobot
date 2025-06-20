@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('date_prices', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->double('price');
+            $table->double('price')->nullable();
             $table->date('date');
             $table->unsignedBigInteger('hotel_service_id');
         });

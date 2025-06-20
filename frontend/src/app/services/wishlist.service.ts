@@ -18,7 +18,7 @@ export class WishlistService {
     }
 
     const response = await this.api.post("wishlist/create", wishlist)
-    return response
+    return response.success
   }
 
   async deleteWishlist(wislistId: number)

@@ -114,7 +114,7 @@
       "type": "n8n-nodes-base.mySql",
       "typeVersion": 2.4,
       "position": [
-        880,
+        640,
         0
       ],
       "id": "05976cdb-7085-4195-b726-dbb8bf0ea3bb",
@@ -128,14 +128,35 @@
     },
     {
       "parameters": {
-        "operation": "executeQuery",
-        "query": "INSERT INTO date_prices(date, price, hotel_service_id) VALUES ('{{ $('HTTP Request').item.json.result.chk_in }}', {{ $('HTTP Request').item.json.result.rates[0].rate }}, {{ $('Get Hotel Services').item.json.id }});",
+        "table": {
+          "__rl": true,
+          "value": "date_prices",
+          "mode": "list",
+          "cachedResultName": "date_prices"
+        },
+        "dataMode": "defineBelow",
+        "valuesToSend": {
+          "values": [
+            {
+              "column": "price",
+              "value": "={{ $('HTTP Request').item.json.result.rates[0].rate}}"
+            },
+            {
+              "column": "date",
+              "value": "={{ $('HTTP Request').item.json.result.chk_in }}"
+            },
+            {
+              "column": "hotel_service_id",
+              "value": "={{ $('Get Hotel Services').item.json.id }}"
+            }
+          ]
+        },
         "options": {}
       },
       "type": "n8n-nodes-base.mySql",
       "typeVersion": 2.4,
       "position": [
-        1080,
+        840,
         0
       ],
       "id": "f902f01a-d576-4175-a204-833402bec603",
@@ -156,10 +177,10 @@
       "type": "n8n-nodes-base.mySql",
       "typeVersion": 2.4,
       "position": [
-        660,
+        1060,
         0
       ],
-      "id": "69921288-7df0-43e1-9725-923e47b10b8f",
+      "id": "600bcb40-2594-4acd-b1bb-316ddd1a39db",
       "name": "Get Wishlists",
       "credentials": {
         "mySql": {
@@ -186,7 +207,7 @@
       "main": [
         [
           {
-            "node": "Get Wishlists",
+            "node": "Get Hotel Services",
             "type": "main",
             "index": 0
           }
@@ -235,7 +256,7 @@
       "main": [
         [
           {
-            "node": "Get Users",
+            "node": "Get Wishlists",
             "type": "main",
             "index": 0
           }
@@ -246,7 +267,7 @@
       "main": [
         [
           {
-            "node": "Get Hotel Services",
+            "node": "Get Users",
             "type": "main",
             "index": 0
           }
@@ -258,7 +279,7 @@
   "settings": {
     "executionOrder": "v1"
   },
-  "versionId": "2ecbbe42-c538-4ec3-9cab-5ac488d5d0f3",
+  "versionId": "7ee37c97-694f-4aea-9b31-4eabfaa56b9d",
   "meta": {
     "templateCredsSetupCompleted": true,
     "instanceId": "07ef0e051a446faad1e38e8c7cf05d218770b1e2e04c3a1410925c849da2a7ec"

@@ -1,197 +1,233 @@
-.caja {
-  max-width: 420px;
-  color: white;
-  overflow: hidden;
-  margin: 40px auto;
+@import url('https://fonts.googleapis.com/css2?family=Arbutus&family=Fjalla+One&family=Gravitas+One&family=Julius+Sans+One&display=swap" rel="stylesheet');
+@import url('https://fonts.googleapis.com/css2?family=Arbutus&family=Fjalla+One&family=Gravitas+One&family=Julius+Sans+One&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet');
+@import url('https://fonts.googleapis.com/css2?family=Arbutus&family=Fjalla+One&family=Gravitas+One&family=Julius+Sans+One&family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet');
+
+
+/*
+
+
+titulos
+font-family: "Fjalla One", sans-serif;
+
+Subtitulo
+font-family: "Julius Sans One", sans-serif;
+
+Texto
+font-family: "Open Sans", sans-serif;
+
+
+*/
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-h1 {
-  color: var(--primary-color);
-  font-size: 4rem;
-  text-shadow: 2px 0px 5px #001757;
-  font-weight: 200;
-  text-transform: uppercase;
-  font-family: "Road Rage", sans-serif;
+.body{
+    font-family: "Julius", sans-serif;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #F0F4F3;
+
+}
+.container{
+    width: 800px;
+    height: 500px;
+    display: flex;
+    position: relative;
+    background-color: #F5F5DC;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 0 10px rgb(0, 0,0,0.3)
+
+}
+.container-form{
+    width: 100%;
+    overflow: hidden;
+}
+.container-form form{
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.5s ease-in;
+}
+.container-form h2{
+    font-size: 30px;
+    margin-bottom: 20px;
+    font-family: "Fjalla One", sans-serif;
+
+}
+.container-form span{
+    font-size: 12px;
+    margin-bottom: 15px;
+}
+.container-input{
+    width: 300px;
+    height: 40px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    padding: 0 15px;
+    background-color: #EEEEEE;
+}
+.container-input input{
+    border: none;
+    outline: none;
+    width: 100%;
+    height: 100%;
+    background-color: inherit;
+}
+.container-form a{
+    color: black;
+    font-size:  14px;
+    margin-bottom: 20px;
+    margin-top: 5px;
+}
+.button{
+    width: 170px;
+    height: 45px;
+    font-size: 15px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;  
+    background-color: #9ED4CB;  
+    color: black;
+}
+/*Animation form*/
+
+.sign-up{
+    transform: translateX(-100%);
+}
+.container.toggle .sign-in{
+    transform: translateX(100%);
+}
+.container.toggle .sign-up{
+    transform: translateX(0);
 }
 
-p {
-  width: 85%;
-  margin: 10px 0;
-  color: rgb(248, 254, 255);
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif, Arial,
-    sans-serif;
-  font-size: 0.8rem;
+.remember{
+    width: 75%;
+    align-items: center;
+    margin-bottom: 10%;
+    margin-top: 5%;
+    display: flex;
 }
 
-.container-login {
-  background-image: url("/login-bg.webp");
-  background-size: cover;
-  min-height: 100vh;
+.remember input{
+    margin-right: 5px;
+    width: 15px;
+    height: 15px;
 }
 
-.menu {
-  display: flex;
-  justify-content: center;
+.remember p{
+    font-size: 15px;
 }
 
-.menu button {
-  flex: 1;
-  color: black;
-  padding: 15px 10px;
-  font-size: 1.3rem;
-  font-weight: bold;
-  color: rgb(255, 251, 0);
-  background: none;
-  border: none;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+/*Welcome*/
+.container-welcome{
+    position: absolute;
+    width: 50%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    transform: translateX(100%);
+    background-color: #3AB397;
+
+    /*Imagen fondo login*/
+    background-repeat: no-repeat;
+    background-image: url("../../../../public/login-bg.webp");
+    background-size: cover;
+
+
+    transition: transform 0.5s ease-in-out, border-radius 0.5s ease-in-out;
+    overflow: hidden;
+    border-radius: 50% 0 0 50%;
+}
+.container.toggle .container-welcome{
+    transform: translateX(0);
+    border-radius: 0 50% 50% 0;
+
+    /*Imagen fondo crear cuenta*/
+    background-repeat: no-repeat;
+    background-image: url("../../../../public/register-bg.webp");
+    background-size: cover;
+
+}
+.container-welcome .welcome{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 0 50px;
+    color: white;
+    transition: transform 0.5s ease-in-out;
+}
+.welcome-sign-in{
+    transform: translateX(100%);
+}
+.container-welcome h3{
+    font-size: 40px;
+    font-family: "Fjalla One", sans-serif;
+
 }
 
-.content {
-  padding: 30px 25px;
-  width: 500px;
-  margin-left: 300px;
+.container-welcome .button{
+    background-color: #9ED4CB;
 }
 
-input {
-  background-color: rgb(24, 24, 24);
-  color: rgb(255, 255, 255);
-  width: 90%;
-  font-size: 1rem;
-  padding: 12px;
-  margin-bottom: 12px;
-  border: 2px solid #00ddff;
-  border-radius: 2px;
-  transition: border-color 0.3s;
+.container.toggle .welcome-sign-in{
+    transform: translateX(0);
 }
-
-input:focus {
-  border-color: #00ff7b;
-  outline: none;
-}
-
-.checkbox-wrapper {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-input[type="checkbox"] {
-  appearance: none;
-  width: 20px;
-  height: 20px;
-  background-color: black;
-  border: 2px solid rgb(0, 255, 225);
-  border-radius: 3px;
-  cursor: pointer;
-  position: relative;
-}
-
-input[type="checkbox"]:checked::after {
-  content: "✔";
-  color: rgb(0, 255, 225);
-  font-size: 16px;
-  position: absolute;
-  top: -1px;
-  left: 5px;
-}
-
-.remember-me-label {
-  color: white;
-  font-size: 1rem;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif, Arial,
-    sans-serif;
-}
-
-label {
-  font-size: 1.1rem;
-  display: inline-block;
-  margin-bottom: 10px;
-}
-
-.change {
-  cursor: pointer;
-}
-.change :hover {
-  color: azure;
-}
-
-.form-button {
-  font-family: "Road Rage", sans-serif;
-  text-transform: uppercase;
-  color: black;
-  padding: 12px 30px;
-  background: radial-gradient(#ffd000, #fbff00);
-  border: none;
-  font-size: 1.3rem;
-  border-radius: 2px;
-  cursor: pointer;
-  transition: all 0.3s ease;
-}
-
-.form-button:hover {
-  transform: scale(1.05);
-}
-
-.error {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-    Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif, Arial,
-    sans-serif;
-  color: #ff3b3b;
-  font-style: italic;
-  font-size: 0.8rem;
-  margin-top: -10px;
-  margin-bottom: 8px;
-  display: block;
-  min-height: 20px;
-}
-
-.icon {
-  margin-top: 0.01rem;
-  background-color: red;
-  border-radius: 50%;
-  padding: 0 0.35rem;
-  font-size: 0.7rem;
-  color: white;
-  font-weight: bolder;
-}
-
-input.ng-invalid.ng-touched {
-  border: 2px solid red;
-  outline: none;
+.container.toggle .welcome-sign-up{
+    transform: translateX(-100%);
 }
 
 /* Responsive */
-@media (max-width: 768px) {
-  h1 {
-    font-size: 2.5rem;
-    text-align: center;
-  }
 
-  .content {
-    padding: 20px;
-    margin: 0 auto;
-    width: 100%;
-  }
+@media (max-width: 800px){
+    .container{
+        width: 550px;
+    }
+    .container-input{
+        width: 100%;
+        height: 40px;
+    }
+    .remember{
+        width: 100%;
+        padding-left: 5%;
+    }
+    .container-welcome h3{
+        font-size: 20px;
+    }
+}
 
-  input {
-    width: 100%;
-  }
+@media (max-width: 550px){
+    .container-welcome .welcome{
+        align-items: normal;
+        padding: 0 35px;
+    }
+}
 
-  .form-button {
-    width: 100%;
-    font-size: 1rem;
-  }
+@media (max-width: 410px){
+    .container-welcome .welcome{
+        padding: 0 20px;
+    }
+    .button{
+        width: 130px;
+    }
+}
 
-  .checkbox-wrapper {
-    flex-direction: row;
-    align-items: center;
-  }
-
-  .change {
-    text-align: center;
-    display: block;
-  }
+.error 
+{
+    color: red;
 }

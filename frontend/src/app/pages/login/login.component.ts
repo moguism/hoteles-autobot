@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { CommonModule, NgIf } from '@angular/common';
 import { AuthService } from '../../services/auth.service';
 import { PasswordValidatorService } from '../../services/password-validator.service';
+import { SweetalertService } from '../../services/sweetalert.service';
 
 
 @Component({
@@ -46,6 +47,7 @@ export class LoginComponent {
     private router: Router,
     private authService: AuthService,
     private passwordValidator: PasswordValidatorService,
+    private sweetAlertService: SweetalertService
   ) {
     this.registerForm = this.formBuilder.group(
       {
@@ -70,6 +72,25 @@ export class LoginComponent {
   async ngOnInit() {
     if (this.authService.isAuthenticated()) {
       this.router.navigateByUrl('profile');
+      return
+    }
+
+    const container = document.querySelector(".container")
+    const sign_in_button = document.getElementById("btn-sign-in")
+    const sign_up_button = document.getElementById("btn-sign-up")
+
+    if (sign_in_button != null) {
+      sign_in_button.addEventListener("click", () => {
+        if (container != null)
+          container.classList.remove("toggle");
+      });
+    }
+
+    if (sign_up_button != null) {
+      sign_up_button.addEventListener("click", () => {
+        if (container != null)
+          container.classList.add("toggle");
+      });
     }
   }
 
@@ -94,11 +115,11 @@ export class LoginComponent {
         localStorage.setItem('jwtToken', this.jwt);
       }
 
-      alert("Inicio de sesión exitoso");
+      this.sweetAlertService.showAlert("Éxito", "Inicio de sesión exitoso", 'success');
 
       this.router.navigateByUrl('profile');
     } else {
-      alert("Ha ocurrido un error")
+      this.sweetAlertService.showAlert("Error", "Datos incorrectos", 'error');
       this.pressedEnter = false;
     }
   }
@@ -120,11 +141,8 @@ export class LoginComponent {
       const registerResult = await this.authService.register(registerPayload);
 
       if (registerResult.success) {
-        const email = this.registerForm.value.email;
-
-        this.router.navigate(['/checkEmail'], {
-          state: { email },
-        });
+        this.sweetAlertService.showAlert("Verifica tu cuenta", "Te hemos enviado un mail para que verifiques tu cuenta antes de continuar", 'info');
+        this.router.navigateByUrl("")
       }
     }
   }

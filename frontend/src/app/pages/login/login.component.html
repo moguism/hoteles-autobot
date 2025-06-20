@@ -1,163 +1,79 @@
-<div class="container-login">
+<div class="body">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <div class="container">
+        <div class="container-form">
+            <form class="sign-in">
+                <h2>Iniciar Sesión</h2>
+                <span>Use su correo y contraseña</span>
+                <div class="container-input">
+                    <i class="fa-solid fa-envelope"></i> <!--Icono de sobre para el mail-->
+                    <input type="email" placeholder="Email" [(ngModel)]="emailOrNickname" [ngModelOptions]="{standalone: true}">
+                </div>
+                <div class="container-input">
+                    <i class="fa-solid fa-lock"></i> <!--Icono de candado para la contraseña-->
+                    <input type="password" placeholder="Contraseña" [(ngModel)]="password" [ngModelOptions]="{standalone: true}">
+                </div>
+            
+                <div class="remember">
+                    <input type="checkbox" id="rememberLogin" (click)="rememberMe = !rememberMe"> <p>Recuérdame</p>
 
-  <div class="content">
-    @if (menuSeleccion === 'login') {
-    <h1>¡Accede ya!</h1>
-    } @else {
-    <h1>¡Registrate ya!</h1>
-    }
-
-    @if (menuSeleccion === 'login') {
-    <div class="contenido login">
-      <form (submit)="login()">
-        <div>
-          <input
-            type="text"
-            [maxLength]="30"
-            placeholder="Email"
-            class="icon-input"
-            required
-            [(ngModel)]="emailOrNickname"
-            [ngModelOptions]="{ standalone: true }"
-          />
-
-          <input
-            type="password"
-            placeholder="Contraseña"
-            class="icon-input"
-            required
-            [(ngModel)]="password"
-            [ngModelOptions]="{ standalone: true }"
-          />
-          <br />
-          <div class="checkbox-wrapper">
-            <input
-              type="checkbox"
-              [(ngModel)]="rememberMe"
-              [ngModelOptions]="{ standalone: true }"
-              id="rememberMe"
-              binary="true"
-            />
-            <label for="rememberMe" class="remember-me-label">
-              Recuérdame
-            </label>
-          </div>
+                </div>
+                <button class="button" id="loginButton" (click)="login()">Iniciar sesión</button>
+            </form>
         </div>
-        <br />
-        <div>
-          <button
-            [disabled]="emailOrNickname.length < 1 || password.length < 1"
-            type="submit"
-            class="form-button"
-          >
-            Iniciar sesión
-          </button>
+    
+        <div class="container-form">
+            <form class="sign-up" [formGroup]="registerForm">
+                <h2>Registrarse</h2>
+                <span>Use su correo electrónico para registrarse</span>
+                <div class="container-input">
+                    <i class="fa-solid fa-user"></i>
+                    <input type="text" placeholder="Nombre" formControlName="nickname">
+                </div>
+                <div class="container-input">
+                    <i class="fa-solid fa-envelope"></i>
+                    <input type="email" placeholder="Email" formControlName="email">
+                </div>
+                <div class="container-input">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="password" placeholder="Contraseña" formControlName="newPassword">
+                </div>
+                <div class="container-input">
+                    <i class="fa-solid fa-lock"></i>
+                    <input type="password" placeholder="Confirmar contraseña" formControlName="confirmPassword">
+                </div>
+                <div class="remember">
+                    <input type="checkbox" id="rememberSign" (click)="rememberMe = !rememberMe"> <p>Recuérdame</p>
+
+                </div>
+                <button class="button" id="register_button" (click)="register()">Registrarse</button>
+                <div *ngIf="registerForm.get('email')?.invalid" class="error">
+                    <div *ngIf="registerForm.get('email')?.hasError('email')">
+                      Tiene que ser un email.
+                    </div>
+                </div>
+                <div class="error">
+                <div
+                  *ngIf="
+                    registerForm.hasError('mismatch') &&
+                    registerForm.get('confirmPassword')?.touched
+                  "
+                >
+                  Las contraseñas no coinciden
+                </div>
+              </div>
+            </form>
         </div>
-      </form>
+    
+        <div class="container-welcome">
+            <div class="welcome-sign-up welcome">
+                <h3 style="color: white;">¿No tienes cuenta?</h3>
+                <button class="button" id="btn-sign-up">Registrarse</button>
+            </div>
+            <div class="welcome-sign-in welcome">
+                <h3 style="color: black;">¿Ya tienes cuenta?</h3>
+                <button class="button" id="btn-sign-in">Iniciar Sesión</button>
+            </div>
+        </div>
     </div>
-    <p class="change" (click)="menuSeleccion = 'register'">
-      ¿No tienes cuenta? Regístrate
-    </p>
-    } @else {
-    <div class="contenido registro">
-      <form [formGroup]="registerForm" (submit)="register()">
-        <input
-          type="text"
-          [maxlength]="16"
-          placeholder="Nombre"
-          formControlName="nickname"
-        />
-
-        <div class="error">
-          <div
-            *ngIf="
-              registerForm.get('nickname')?.invalid &&
-              registerForm.get('nickname')?.touched
-            "
-          >
-            <div *ngIf="registerForm.get('nickname')?.hasError('required')">
-              <span class="icon">!</span>
-              El nombre es obligatorio
-            </div>
-          </div>
-        </div>
-
-        <input type="email" placeholder="Email" formControlName="email" />
-
-        <div class="error">
-          <div
-            *ngIf="
-              registerForm.get('email')?.invalid &&
-              registerForm.get('email')?.touched
-            "
-          >
-            <div *ngIf="registerForm.get('email')?.hasError('required')">
-              <span class="icon">!</span>
-               El mail es obligatorio
-            </div>
-            <div
-              *ngIf="
-                registerForm.get('email')?.hasError('email') ||
-                registerForm.get('email')?.hasError('pattern')
-              "
-            >
-              <span class="icon">!</span>
-              Correo no válido
-            </div>
-          </div>
-        </div>
-
-        <input
-          type="password"
-          placeholder="Contraseña"
-          formControlName="newPassword"
-        />
-
-        <div class="error">
-          <div
-            *ngIf="
-              registerForm.get('newPassword')?.invalid &&
-              registerForm.get('newPassword')?.touched
-            "
-          >
-            <div *ngIf="registerForm.get('newPassword')?.hasError('required')">
-              <span class="icon">!</span>La contraseña es obligatoria
-            </div>
-            <div *ngIf="registerForm.get('newPassword')?.hasError('minlength')">
-              <span class="icon">!</span>La contraseña debe tener al menos 6 caracteres
-            </div>
-          </div>
-        </div>
-
-        <input
-          type="password"
-          placeholder="Confirmar contraseña"
-          formControlName="confirmPassword"
-        />
-
-        <div class="error">
-          <div
-            *ngIf="
-              registerForm.hasError('mismatch') &&
-              registerForm.get('confirmPassword')?.touched
-            "
-          >
-            <span class="icon">!</span>Las contraseñas no coinciden
-          </div>
-        </div>
-
-        <button
-          [disabled]="!registerForm.valid"
-          type="submit"
-          class="form-button"
-        >
-          Crear cuenta
-        </button>
-      </form>
-    </div>
-    <p class="change" (click)="menuSeleccion = 'login'">
-      ¿Ya tienes cuenta? Inicia sesión
-    </p>
-    }
-  </div>
 </div>

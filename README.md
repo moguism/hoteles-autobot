@@ -1,6 +1,6 @@
 ## TODO List:
 - Aplicar principios SOLID
-- Mejorar la seguridad de las CORS
+- Mejorar la seguridad
 
 ## INSTRUCCIONES
 - Poner a correr Rasa con:
@@ -10,6 +10,7 @@
 
 ## FUTURAS IMPLEMENTACIONES
 - Hacer que sea compatible con múltiples servicios (como Day Pass de piscina), y no solo alojamiento
+- Mostrar la página en español y en inglés
 
 ## RECURSOS
 - **Relaciones:** https://www.youtube.com/watch?v=7B_Sbqq62Bc&t=650s

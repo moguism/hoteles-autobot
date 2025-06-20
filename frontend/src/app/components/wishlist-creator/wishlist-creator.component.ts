@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { HotelService } from '../../models/hotel-service';
 import { FormsModule } from '@angular/forms';
 import { WishlistService } from '../../services/wishlist.service';
+import { SweetalertService } from '../../services/sweetalert.service';
 
 @Component({
   selector: 'app-wishlist-creator',
@@ -11,7 +12,7 @@ import { WishlistService } from '../../services/wishlist.service';
 })
 export class WishlistCreatorComponent {
 
-  constructor(private wishlistService: WishlistService){}
+  constructor(private wishlistService: WishlistService, private sweetAlertService: SweetalertService){}
 
   @Input() hotelService: HotelService | null = null
 
@@ -20,6 +21,14 @@ export class WishlistCreatorComponent {
   
   async addToWishlist()
   {
-    await this.wishlistService.createWishlist(this.hotelService!!, this.desiredPrice);
+    const result = await this.wishlistService.createWishlist(this.hotelService!!, this.desiredPrice);
+    if(result)
+    {
+      this.sweetAlertService.showAlert("Éxito", "Wishlist creada correctamente", 'success')
+    }
+    else
+    {
+      this.sweetAlertService.showAlert("Error", "Ha ocurrido un error", 'error')
+    }
   }
 }
