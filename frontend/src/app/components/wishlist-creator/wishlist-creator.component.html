@@ -1,4 +1,7 @@
-<div>
-    <input [(ngModel)]="desiredPrice" [ngModelOptions]="{'standalone': true}" placeholder="Precio">
-    <button (click)="addToWishlist()">Crear</button>
+<div class="wishlist-creator">
+    <div class="wishlist-input-group">
+        <input [(ngModel)]="desiredPrice" [ngModelOptions]="{'standalone': true}" placeholder="Introduce el precio deseado" class="wishlist-price-input">
+        <span class="currency-symbol">€</span>
+    </div>
+    <button (click)="addToWishlist()" class="wishlist-create-button">Agregar a Wishlist</button>
 </div>

@@ -1,37 +1,53 @@
 @if(hotel)
 {
-    <h1>{{hotel.name}}</h1>
-    <h2>Servicios disponibles:</h2>
-    <div class="header">
-        @for (hotelService of hotel.services; track $index) 
+    <div class="hotel-container">
+        <div class="hotel-header">
+            <img [src]="hotel.xotelo_photo_url" alt="{{hotel.name}}" class="hotel-image">
+            <div class="hotel-info">
+                <h1 class="hotel-name">{{hotel.name}}</h1>
+                <p class="hotel-address">{{hotel.address}}</p>
+                <a class="service-item" [href]="hotel.xotelo_hotel_url">Abrir en TripAdvisor</a>
+            </div>
+        </div>
+
+        <section class="hotel-services">
+            <h2 class="section-title">Servicios disponibles</h2>
+            <div class="services-list">
+                @for (hotelService of hotel.services; track $index)
+                {
+                    <a (click)="changeSelectedService(hotelService)" class="hotel-address">{{hotelService.service.name}}</a>
+                    @if($index != hotel.services.length - 1)
+                    {
+                        <span class="separator">|</span>
+                    }
+                }
+            </div>
+        </section>
+
+        <!-- Gráfica de precios -->
+        <section class="price-evolution">
+            <h2 class="section-title">Evolución de precios del alojamiento</h2>
+            <div class="price-chart-container">
+                <canvas #priceChart class="price-chart"></canvas>
+            </div>
+        </section>
+
+        @if(authService.isAuthenticated())
         {
-            <a (click)="changeSelectedService(hotelService)">{{hotelService.service.name}}</a>
-            @if($index != hotel.services.length - 1)
-            {
-                |
-            }
+            <div class="wishlist-section">
+                <button class="wishlist-button" (click)="openWishlistCreator = !openWishlistCreator">Agregar a wishlist</button>
+                @if(openWishlistCreator)
+                {
+                    <app-wishlist-creator [hotelService]="selectedService" class="wishlist-creator"></app-wishlist-creator>
+                }
+            </div>
+        }
+        @else {
+            <p class="login-prompt">Inicia sesión para agregar a la wishlist</p>
         }
     </div>
-    <h2>Evolución de precios del alojamiento</h2>
-
-    <!-- La gráfica por haora solo renderiza los precios del alojamiento, habría que cambiarla si el selectedService cambia (que por ahora no porque es futura implementación)-->
-    <div>
-        <canvas #priceChart></canvas>
-    </div>
-
-    @if(authService.isAuthenticated())
-    {
-        <button (click)="openWishlistCreator = !openWishlistCreator">Agregar a wishlist</button>
-        @if(openWishlistCreator)
-        {
-            <app-wishlist-creator [hotelService]="selectedService"></app-wishlist-creator>
-        }
-    }
-    @else {
-        <p>Inicia sesión para agregar a la wishlist</p>
-    }
 }
 @else 
 {
-    <p>Cargando...</p>
+    <p class="loading">Cargando...</p>
 }
