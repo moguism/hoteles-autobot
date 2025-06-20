@@ -3,10 +3,11 @@ import { ChatMessageComponent } from '../../components/chat-message/chat-message
 import { FormsModule } from '@angular/forms';
 import { ChatMessage } from '../../models/chat-message';
 import { ChatService } from '../../services/chat.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-chat',
-  imports: [ChatMessageComponent, FormsModule],
+  imports: [ChatMessageComponent, FormsModule, CommonModule],
   templateUrl: './chat.component.html',
   styleUrl: './chat.component.css'
 })
@@ -20,6 +21,12 @@ export class ChatComponent {
     content: "Hola, ¿en qué puedo ayudarte?",
     isSelf: false
   }]
+
+  isChatVisible = false;
+
+  toggleChat() {
+    this.isChatVisible = !this.isChatVisible;
+  }
 
   async sendMessage()
   {

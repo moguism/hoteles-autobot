@@ -2,30 +2,30 @@
   <div class="container py-5">
     <div class="row d-flex justify-content-center">
       <div class="col-md-8 col-lg-6 col-xl-4">
-        <div class="card" id="chat1" style="border-radius: 15px;">
+        <div class="card" id="chat1" [ngClass]="{'show': isChatVisible}" style="border-radius: 15px; position: fixed; bottom: 20px; right: 20px; width: 300px;">
           <div class="card-header d-flex justify-content-between align-items-center p-3 bg-info text-white border-bottom-0" style="border-top-left-radius: 15px; border-top-right-radius: 15px;">
             <i class="fas fa-angle-left"></i>
             <p class="mb-0 fw-bold">Live chat</p>
-            <i class="fas fa-times"></i>
+            <i class="fas fa-times" (click)="toggleChat()"></i>
           </div>
           <div class="card-body">
-
-            @for (message of messages; track $index)
-            {
-                <app-chat-message 
-                    [message]="message.content" 
-                    [avatarUrl]="message.isSelf ? '../../user-icon.png' : '../../bot-icon.png'"
-                    [isSent]="message.isSelf">
-                </app-chat-message>
+            @for (message of messages; track $index) {
+              <app-chat-message 
+                [message]="message.content" 
+                [avatarUrl]="message.isSelf ? '../../user-icon.png' : '../../bot-icon.png'"
+                [isSent]="message.isSelf">
+              </app-chat-message>
             }
 
             <div data-mdb-input-init class="form-outline">
               <textarea class="form-control bg-body-tertiary" id="textAreaExample" rows="4" placeholder="Escribe tu mensaje" [(ngModel)]="messageToSend" [ngModelOptions]="{standalone: true}"></textarea>
               <button (click)="sendMessage()">Enviar</button>
             </div>
-
           </div>
         </div>
+        <button id="openChatBtn" class="btn btn-primary rounded-circle" (click)="toggleChat()" style="position: fixed; bottom: 20px; right: 20px; width: 50px; height: 50px; display: block;">
+          <i class="pi pi-comment"></i>
+        </button>
       </div>
     </div>
   </div>

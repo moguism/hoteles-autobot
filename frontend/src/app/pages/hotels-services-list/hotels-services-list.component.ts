@@ -7,10 +7,10 @@ import { HotelCardComponent } from '../../components/hotel-card/hotel-card.compo
 import { FormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { SweetalertService } from '../../services/sweetalert.service';
-
+import { ChatComponent } from '../../components/chat/chat.component';
 @Component({
   selector: 'app-hotels-services-list',
-  imports: [HotelCardComponent, FormsModule],
+  imports: [HotelCardComponent, FormsModule, ChatComponent],
   templateUrl: './hotels-services-list.component.html',
   styleUrls: ['./hotels-services-list.component.css']
 })

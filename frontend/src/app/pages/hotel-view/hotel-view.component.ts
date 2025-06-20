@@ -7,14 +7,15 @@ import { Hotel } from '../../models/hotel';
 import { HotelService } from '../../models/hotel-service';
 import { WishlistCreatorComponent } from '../../components/wishlist-creator/wishlist-creator.component';
 import { CustomRouterService } from '../../services/custom-router.service';
-import { Chart, CategoryScale, LinearScale, LineController, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js'; 
+import { Chart, CategoryScale, LinearScale, LineController, PointElement, LineElement, Title, Tooltip, Legend } from 'chart.js';
+import { ChatComponent } from '../../components/chat/chat.component';
 
 // Para que chart.js furule
 Chart.register(CategoryScale, LinearScale, LineController, PointElement, LineElement, Title, Tooltip, Legend);
 
 @Component({
   selector: 'app-hotel-view',
-  imports: [WishlistCreatorComponent],
+  imports: [WishlistCreatorComponent, ChatComponent],
   templateUrl: './hotel-view.component.html',
   styleUrl: './hotel-view.component.css'
 })

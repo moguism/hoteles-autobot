@@ -4,10 +4,10 @@ import { User } from '../../models/user';
 import { CustomRouterService } from '../../services/custom-router.service';
 import { UserService } from '../../services/user.service';
 import { WishlistService } from '../../services/wishlist.service';
-
+import { ChatComponent } from '../../components/chat/chat.component';
 @Component({
   selector: 'app-profile',
-  imports: [],
+  imports: [ChatComponent],
   templateUrl: './profile.component.html',
   styleUrl: './profile.component.css'
 })
