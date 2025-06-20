@@ -5,6 +5,8 @@ import { Service } from '../../models/service';
 import { CustomRouterService } from '../../services/custom-router.service';
 import { HotelCardComponent } from '../../components/hotel-card/hotel-card.component';
 import { FormsModule } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
+import { SweetalertService } from '../../services/sweetalert.service';
 
 @Component({
   selector: 'app-hotels-services-list',
@@ -24,7 +26,11 @@ export class HotelsServicesListComponent implements OnInit {
 
   services: Service[] = []
 
-  constructor(private hotelsServicesService: HotelsServicesService, public router: CustomRouterService){}
+  constructor(
+    private hotelsServicesService: HotelsServicesService, 
+    public router: CustomRouterService,
+    private activatedRoute: ActivatedRoute, 
+    private sweetAlertService: SweetalertService){}
 
   async ngOnInit() {
     this.hotels = await this.hotelsServicesService.getAllHotels()
@@ -32,6 +38,14 @@ export class HotelsServicesListComponent implements OnInit {
     this.sortedHotels = [...this.hotels]
     this.searchedHotels = this.sortedHotels
     this.sortHotels()
+
+    this.activatedRoute.queryParams.subscribe(params => {
+      const verified = params['verified']
+      if(verified)
+      {
+        this.sweetAlertService.showAlert("Éxito", "Cuenta verificada correctamente.", 'success')
+      }
+    });
   }
 
   onSearchChange() {

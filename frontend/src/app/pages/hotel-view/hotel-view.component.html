@@ -1,37 +1,35 @@
 @if(hotel)
 {
     <h1>{{hotel.name}}</h1>
-    <h2>Servicios disponible:</h2>
+    <h2>Servicios disponibles:</h2>
     <div class="header">
         @for (hotelService of hotel.services; track $index) 
         {
             <a (click)="changeSelectedService(hotelService)">{{hotelService.service.name}}</a>
-            @if($index == 0)
+            @if($index != hotel.services.length - 1)
             {
                 |
             }
         }
     </div>
-    <!-- TODO: Agregar criterios de ordenación por precio y fecha -->
-    <h2>Listado de precios</h2>
-        @for (hotelService of hotel.services; track $index){
-            <h3>Servicio: {{ hotelService.service.name }}</h3>
-            @if(authService.isAuthenticated())
-            {
-                <button (click)="openWishlistCreator = !openWishlistCreator">Agregar a wishlist</button>
-                @if(openWishlistCreator)
-                {
-                    <app-wishlist-creator [hotelService]="hotelService"></app-wishlist-creator>
-                }
-            }
-            @for (datePrice of hotelService.date_prices; track $index)
-            {
-                <div>
-                    <p>Precio: {{ datePrice.price }}</p>
-                    <p>Fecha: {{datePrice.date }}</p>
-                </div>
-            }
+    <h2>Evolución de precios del alojamiento</h2>
+
+    <!-- La gráfica por haora solo renderiza los precios del alojamiento, habría que cambiarla si el selectedService cambia (que por ahora no porque es futura implementación)-->
+    <div>
+        <canvas #priceChart></canvas>
+    </div>
+
+    @if(authService.isAuthenticated())
+    {
+        <button (click)="openWishlistCreator = !openWishlistCreator">Agregar a wishlist</button>
+        @if(openWishlistCreator)
+        {
+            <app-wishlist-creator [hotelService]="selectedService"></app-wishlist-creator>
         }
+    }
+    @else {
+        <p>Inicia sesión para agregar a la wishlist</p>
+    }
 }
 @else 
 {
