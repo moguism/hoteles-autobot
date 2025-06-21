@@ -10,6 +10,7 @@ use App\Http\Controllers\WishlistController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/user', [UserController::class, 'index'])->middleware('auth:sanctum'); // Con este middleware es como obligo a que las rutas estén protegidas
+Route::put('/user', [UserController::class, 'updateUser'])->middleware('auth:sanctum');
 
 Route::post('/register', [AuthController::class, 'register']);
 Route::post('/login', [AuthController::class, 'login']);
