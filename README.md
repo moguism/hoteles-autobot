@@ -6,10 +6,12 @@ Este proyecto es un **catálogo de hoteles** en el que los usuarios pueden consu
 
 El sistema también incluye un **chatbot inteligente** alimentado por **Rasa**, **Laragent** e **Inteligencia Artificial** con **MCP** (Model Control Protocol) desarrollado en **Python**.
 
-Puedes ver un vídeo del proyecto, con instrucciones sobre su uso, su desarrollo y más a través de este enlace :D
-
 - **Backend**: Laravel
 - **Frontend**: Angular
+
+Puedes ver un vídeo del proyecto, con instrucciones sobre su uso, su desarrollo y más a través de este enlace :D
+
+![CapturaProyecto](https://github.com/user-attachments/assets/dd1eff85-a8b4-458a-8675-ae9642d9b4fb)
 
 ## CARACTERÍSTICAS
 
