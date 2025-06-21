@@ -180,7 +180,6 @@ body {
 }
 
 .main {
-  background-image: url("/admin/admin-bg.webp");
   background-size: cover;
   min-height: 100vh;
 }

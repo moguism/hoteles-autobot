@@ -4,32 +4,32 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\WishlistRequest;
 use App\Models\Wishlist;
+use App\Services\UserService;
+use App\Services\WishlistService;
 use Auth;
 
 class WishlistController extends Controller
 {
+    protected WishlistService $wishlistService;
+    protected UserService $userService;
+
+    public function __construct(WishlistService $wishlistService, UserService $userService)
+    {
+        $this->wishlistService = $wishlistService;
+        $this->userService = $userService;
+    }
+
     public function createWishlist(WishlistRequest $request)
     {
-        $user = Auth::user();
-
-        Wishlist::create([
-            "user_id" => $user->id,
-            "desired_price" => $request->price,
-            "hotel_service_id" => $request->hotel_service_id
-        ]);
-
+        $user = $this->userService->getAuthorizedUser();
+        $this->wishlistService->create($request, $user->id);
         return response()->json(["status" => true], status: 201);
     }
 
     public function deleteWishlistById($id)
     {
-        $user = Auth::user();
-        $wishlist = Wishlist::find($id);
-        if($wishlist->user_id != $user->id)
-        {
-            return response()->json(["status"=> false], status:401);
-        }
-        $wishlist->delete();
-        return response()->json(["status"=> true], status:204);
+        $user = $this->userService->getAuthorizedUser();
+        $couldDelete = $this->wishlistService->deleteWishlistById($id, $user->id);
+        return response()->json(["status"=> $couldDelete], $couldDelete == true ? 204 : 401);
     }
 }

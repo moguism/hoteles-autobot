@@ -1,7 +1,3 @@
-## TODO List:
-- Aplicar principios SOLID
-- Mejorar la seguridad
-
 ## INSTRUCCIONES
 - Poner a correr Rasa con:
  ```bash

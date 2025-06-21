@@ -4,87 +4,52 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\LoginRequest;
-use App\Models\User;
-use Illuminate\Support\Facades\Hash;
-use Ramsey\Uuid\Uuid;
-use Illuminate\Support\Facades\Http;
-use Illuminate\Http\Request;
-use Auth;
-use Exception;
+use App\Http\Requests\VerifyUserRequest;
+use App\Services\UserService;
 
 class AuthController extends Controller
 {
-    // La verificación de mail la podría hacer desde el propio Laravel, pero para practicar con n8n lo he hecho así
-    // TODO: Mejorar estructura siguiendo patrones SOLID
+    protected UserService $userService;
+
+    public function __construct(UserService $userService)
+    {
+        $this->userService = $userService;
+    }
+
     public function register(CreateUserRequest $request)
     {
-        $verification_code = Uuid::uuid4()->toString();
-        $email = $request->email;
-
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $email,
-            'password'=> Hash::make($request->password),
-            'verification_code'=> $verification_code
-        ]);
-
-        try
-        {
-            Http::withOptions(['verify' => false])->get(env("N8N_MAIL_WEBHOOK"), [
-                'code' => $verification_code,
-                'email'=> $email
-            ]);
-        }
-        catch(Exception)
-        {
-            print "Ha ocurrido un error al intentar mandar la petición a n8n";
-        }
-
+        $token = $this->userService->registerUser($request);
         return response()->json([
             'status' => true,
-            'token' => $user->createToken("API TOKEN")->plainTextToken
+            'token' => $token
         ], 201);
     }
 
     public function login(LoginRequest $request)
     {
-        if(!Auth::attempt($request->only(["email","password"])))
+        $token = $this->userService->loginUser($request);
+        if($token == null)
         {
             return response()->json([
                 "status" => false,
-            ], 401);
-        }
-
-        $user = User::where('email', $request->email)->first();
-
-        if($user == null || $user->is_verified == false)
-        {
-            return response()->json([
-                'status'=> false,
-            ], status: 401);
+            ], 401);   
         }
 
         return response()->json([
             'status'=> true,
-            'token' => $user->createToken("API TOKEN")->plainTextToken
+            'token' => $token
         ], 200);
     }
 
-    public function verifyAccount(Request $request)
+    public function verifyAccount(VerifyUserRequest $request)
     {
-        $user = User::where([
-            'email' => $request->query('email'),
-            'verification_code'=> $request->query('code')
-            ])->first();
-
-        if (!$user) {
+        $couldVerify = $this->userService->verifyUser($request);
+        if($couldVerify == false)
+        {
             return response()->json([
                 'status' => false,
             ], 401);
         }
-
-        $user->is_verified = true;
-        $user->save();
 
         $external_uri = 'http://localhost:4200?verified=true'; 
         return redirect()->to($external_uri)->send();
