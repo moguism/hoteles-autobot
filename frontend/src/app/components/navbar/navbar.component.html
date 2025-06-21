@@ -1,0 +1,21 @@
+<nav>
+  <ul>
+    <li>
+      <a (click)="router.navigateToUrl('')">Inicio</a>
+    </li>
+        @if(authService.isAuthenticated())
+        {
+            <li>
+                <a (click)="router.navigateToUrl('profile')">Perfil</a>
+            </li>
+            <li>
+                <a (click)="authService.logout()">Cerrar sesión</a>
+            </li>
+        }
+        @else {
+            <li>
+                <a (click)="router.navigateToUrl('login')">Iniciar sesión</a>
+            </li>
+        }
+  </ul>
+</nav>
