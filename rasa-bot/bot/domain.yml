@@ -12,7 +12,6 @@ responses:
   utter_greet:
   - text: "Hola, ¿cómo estás?"
 
-  # TODO: Agregar manualmente todos los hoteles que consigua la API automatizada
   utter_hotels:
   - text: "Tenemos los siguientes hoteles en nuestra base de datos: Ibeostar Waves Malaga Playa, Barcelo Málaga, Hotel Costa Málaga, H10 Croma Málaga, Only You Hotel Málaga, AC Hotel Malaga Palacio, Ilunion Málaga, NH Málaga, Sallés Hotel Málaga Centro y Petit Palace Plaza Málaga"
 
