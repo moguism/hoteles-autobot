@@ -2,30 +2,6 @@
   "name": "MainWorkflow",
   "nodes": [
     {
-      "parameters": {},
-      "type": "n8n-nodes-base.manualTrigger",
-      "typeVersion": 1,
-      "position": [
-        0,
-        0
-      ],
-      "id": "3107e573-e2da-46ff-bae5-b1b43cd42d79",
-      "name": "When clicking ‘Execute workflow’"
-    },
-    {
-      "parameters": {
-        "content": "Este nodo sería reemplazado después por el que se ejecuta cada día"
-      },
-      "type": "n8n-nodes-base.stickyNote",
-      "position": [
-        -260,
-        -20
-      ],
-      "typeVersion": 1,
-      "id": "db306b3b-3d7a-4bdf-a766-fa2af178a507",
-      "name": "Sticky Note"
-    },
-    {
       "parameters": {
         "url": "=https://data.xotelo.com/api/rates?hotel_key={{$json.xotelo_hotel_key}}&chk_in={{new Date().toISOString().slice(0, 10)}}&chk_out={{new Date(Date.now() + 86400000).toISOString().slice(0, 10)}}",
         "options": {}
@@ -157,7 +133,7 @@
       "typeVersion": 2.4,
       "position": [
         840,
-        0
+        -160
       ],
       "id": "f902f01a-d576-4175-a204-833402bec603",
       "name": "Insert Date Prices",
@@ -188,21 +164,27 @@
           "name": "MySQL account"
         }
       }
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {}
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        20,
+        0
+      ],
+      "id": "2402f1cb-aa33-4f11-a9f4-d20ba1858b14",
+      "name": "Schedule Trigger"
     }
   ],
   "pinData": {},
   "connections": {
-    "When clicking ‘Execute workflow’": {
-      "main": [
-        [
-          {
-            "node": "Get Hotels",
-            "type": "main",
-            "index": 0
-          }
-        ]
-      ]
-    },
     "HTTP Request": {
       "main": [
         [
@@ -248,19 +230,18 @@
             "node": "Insert Date Prices",
             "type": "main",
             "index": 0
-          }
-        ]
-      ]
-    },
-    "Insert Date Prices": {
-      "main": [
-        [
+          },
           {
             "node": "Get Wishlists",
             "type": "main",
             "index": 0
           }
         ]
+      ]
+    },
+    "Insert Date Prices": {
+      "main": [
+        []
       ]
     },
     "Get Wishlists": {
@@ -273,13 +254,24 @@
           }
         ]
       ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Get Hotels",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
     }
   },
   "active": false,
   "settings": {
     "executionOrder": "v1"
   },
-  "versionId": "7ee37c97-694f-4aea-9b31-4eabfaa56b9d",
+  "versionId": "6dde4c48-b2f9-4c64-955d-a79e0e9d2a2d",
   "meta": {
     "templateCredsSetupCompleted": true,
     "instanceId": "07ef0e051a446faad1e38e8c7cf05d218770b1e2e04c3a1410925c849da2a7ec"
