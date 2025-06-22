@@ -3,13 +3,13 @@
 namespace App\Services;
 
 use App\AiAgents\RecepcionistAgent;
-use Illuminate\Http\Request;
+use App\Http\Requests\ChatRequest;
 use Illuminate\Support\Facades\Http;
 use Exception;
 
 class ChatService
 {
-    public function sendMessage(Request $request)
+    public function sendMessage(ChatRequest $request)
     {
         $message = $request->message;
         //error_log("Mensaje: " . $message);
