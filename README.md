@@ -9,7 +9,7 @@ El sistema también incluye un **chatbot inteligente** alimentado por **Rasa**, 
 - **Backend**: Laravel
 - **Frontend**: Angular
 
-Puedes ver un vídeo del proyecto, con instrucciones sobre su uso, su desarrollo y más a través de este enlace :D
+Puedes ver un vídeo del proyecto, con instrucciones sobre su uso, su desarrollo y más a través de [este enlace](https://youtu.be/nmEMzhIpw7U) :D
 
 ![CapturaProyecto](https://github.com/user-attachments/assets/dd1eff85-a8b4-458a-8675-ae9642d9b4fb)
 
