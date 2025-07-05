@@ -1,5 +1,6 @@
 Include
-Lib
+[Ll]ib*
+bin
 Scripts
 pyvenv.cfg
 __pycache__
