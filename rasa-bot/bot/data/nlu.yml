@@ -34,13 +34,14 @@ nlu:
 
 - intent: bot_challenge
   examples: |
-    - are you a bot?
-    - are you a human?
-    - am I talking to a bot?
-    - am I talking to a human?
+    - ¿Eres un bot?
+    - ¿Eres un humano?
+    - ¿Estoy hablando con un bot?
+    - ¿Estoy hablando con un humano?
 
 - intent: out_of_scope
   examples: |
     - mondongo
     - Quiero ser minero
+    - Cuando es mejor viajar a Barcelona
     - ¿Cuánto es 2 + 2?
